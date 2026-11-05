@@ -5,37 +5,24 @@ import random
 import uib_inf100_music as music
 import os
 import sys
-#######
-#
-#Idee myldring
-#
-# meelee boss figther :)
-
-
-
-###to do
-
-# animasjon flipping
-# flere animasjoner for enemy
-# boss 1:
-#           Idle animation
-#           walking animation
-#           attack1 , 2 , 3 animation
-#           hit animation
-#           gud er ikke på min side
-#           lage flere enemies
-#           polishe hitboxes
-#           Mac rebind
-#           Boss 2
-#           final boss
-### 
-#hvor mange bosser trenger jeg?
-#minst 3, helst 5
 
 
 ############
+#            Dette er mitt første oredentlige spill. (snake telles liksom ikke siden det var en del håndholding)
+#            Jeg har ikke brukt noen andre kilder enn det som er tilgjengelig på inf100 nettsiden, med unntak av for OS og JSON importering
+#            Mye av triksene jeg har brukt her er basert på ting jeg gjorde i Snake
+#            Alle assets er laget av meg.
+#            så vil rette en stor takk ti pixilart.com, og beepbox.co som har vært mine verktøy for bilder og musikk respektivt
+#            inspirasjonen til hovedkarakteren er snusmumrikken 
+#            ellers er det bare ting som har kommet til meg (i mine mareritt mest sannsynlig)
+#            Hadde jeg hatt mer tid, hadde jeg gjort mer :) men livet kom litt i veien så dette er alt jeg har rekket å gjøre
+#            
+#            Det er et vanskelig spill, så ikke bli lei deg hvis du er dårlig.
+#            skill issue heter det :P
+#     ###########################       
+
 # OS check og JSON check stjal jeg fra Snaken min
-# hvor jeg stjal det fra følgende kilder:
+# hvor jeg stjal det fra disse kildene:
 ##########kilder:
 #https://docs.python.org/3/library/sys.html#sys.platform (docs for å finne ut hvordan jeg kan finne ut av OS fordi noen folk har mac)
 #https://stackoverflow.com/questions/32991069/python-checking-for-json-files-and-creating-one-if-needed (Stackoverflow for å finne ut av hvordan sjekke om en JSON fil finnes)
@@ -43,6 +30,22 @@ import sys
 #
 #
 #
+############################
+###to do
+##################################
+# forskjell på hit og i frames?
+# boss 3
+#  attack, look, og bakgrunn
+# final boss
+# attacks, bakgrunn
+# settings:
+#    rebinds
+#    sounds
+#    
+#  lage lydeffekter?
+# 
+
+
 
 def app_started(app):
     
@@ -1314,10 +1317,12 @@ def draw_death_screen(app, canvas):
                        font="times, 30")
 
 def draw_hud_player(app, canvas):
-    
-    canvas.create_rectangle(0 , 700 , 900, 900,
+    if app.boss_fight == "One":
+        canvas.create_rectangle(0 , 700 , 900, 900,
                             fill="ivory")
-
+    elif app.boss_fight == "Two":
+                canvas.create_rectangle(0 , 700 , 900, 900,
+                            fill="pale violet red")
     canvas.create_image(200, 750, pil_image=app.healthbar)
     canvas.create_text(200, 750,
                        text=app.player_health,
